@@ -1,5 +1,5 @@
 const { fifaData } = require('./fifa.js')
-
+console.log(fifaData);
 
 /* Görev 1: 
 	Verilen datayı parçalayarak aşağıdaki verileri (console.log-ing) elde ederek pratik yapın. 
@@ -7,15 +7,20 @@ const { fifaData } = require('./fifa.js')
 	💡 İPUCU: Öncelikle datayı filtrelemek isteyebilirsiniz */
 
 //(a) 2014 Dünya kupası Finali Evsahibi takım ismi (dizide "Home Team Name" anahtarı)
-
+console.log (year2014["HomeTeamName"]);
 //(b) 2014 Dünya kupası Finali Deplasman takım ismi  (dizide "Away Team Name" anahtarı)
-
+console.log (year2014["Away Team Name"]);
 //(c) 2014 Dünya kupası finali Ev sahibi takım golleri (dizide "Home Team Goals" anahtarı)
-
+console.log (year2014["Home Team Goals"]);
 //(d)2014 Dünya kupası finali Deplasman takım golleri  (dizide "Away Team Goals" anahtarı)
-
+console.log (year2014["Away Team Goals"]);
 //(e) 2014 Dünya kupası finali kazananı*/
 
+function DünyaKupasıKazananı(skor){
+const  DünyaKupasıKazananı = [];
+	if((year2014["Home Team Goals"]) >(year2014["Away Team Goals"]))
+return  DünyaKupasıKazananı;
+}
 
 /*  Görev 2: 
 	Finaller adlı fonksiyonu kullanarak aşağıdakileri uygulayın:
@@ -25,12 +30,13 @@ const { fifaData } = require('./fifa.js')
 	💡 İPUCU - verilen data içindeki nesnelerin(objects) "Stage" anahtarına bakmalısınız
 */
 
-function Finaller(/* kodlar buraya */) {
-	
-    /* kodlar buraya */
+function Finaller(FifaDataP) {
+	const finalmaci = FifaDataP.filter(x => x.stage === 'Final')
+	return finalmaci
 }
+console.log(Finaller(fifaData));
 
-
+// Output: [{ id: 3, stage:
 
 /*  Görev 3: 
 	Bir higher-order fonksiyonu olan Yillar isimli fonksiyona aşağıdakileri uygulayın: 
@@ -39,11 +45,13 @@ function Finaller(/* kodlar buraya */) {
 	3. Finaller data setindeki tüm yılları içeren "years" adındaki diziyi(array) döndürecek
 	*/
 
-function Yillar(/* kodlar buraya */) {
+function Yillar(fifaDataP,Finallerback) {
+	const finalMaci = Finallerback(fifaDataP)
+	const yillar = finalMaci.map(x => x.Year);
 	
-    /* kodlar buraya */
+   return Yillar;
 }
-
+console.log(Yillar(fifaData, Finaller))
 
 /*  Görev 4: 
 	Bir higher-order fonksiyonunu olan Kazananlar isimli fonksiyona aşağıdakileri uygulayın:  
@@ -53,9 +61,11 @@ function Yillar(/* kodlar buraya */) {
 	💡 İPUCU: Beraberlikler(ties) için şimdilik endişelenmeyin (Detaylı bilgi için README dosyasına bakabilirsiniz.)
 	4. Tüm kazanan ülkelerin isimlerini içeren `kazananlar` adında bir dizi(array) döndürecek(return)  */ 
 
-function Kazananlar(/* kodlar buraya */) {
-	
-    /* kodlar buraya */
+function Kazananlar(fifaDataP, Finallerback, ) {
+	const finalMaci = Finallerback(fifaDataP)
+	const kazanani = finalMaci.filter(x => x.["Win conditions"] || !=="").map(x => x["Home Team Name"]);
+
+ return kazanani;
 	
 }
 
@@ -72,7 +82,7 @@ function Kazananlar(/* kodlar buraya */) {
 	💡 İPUCU: her cümlenin adım 4'te belirtilen cümleyle birebir aynı olması gerekmektedir.
 */
 
-function YillaraGoreKazananlar(/* kodlar buraya */) {
+function YillaraGoreKazananlar() {
 	
 /* kodlar buraya */
 
